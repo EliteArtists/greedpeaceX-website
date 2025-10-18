@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Modal from './Modal';
 
 function SupportMissionPage() {
@@ -42,7 +43,7 @@ function SupportMissionPage() {
           </button>
         </div>
 
-        {/* Fund Investigations Column */}
+        {/* Fund Investigations Column - Uses Link for routing */}
         <div className="p-6 bg-gray-900 border-2 border-yellow-400 flex flex-col justify-between">
           <div>
             <h3 className="text-xl md:text-2xl font-bold mb-2">FUND<br/>INVESTIGATIONS</h3>
@@ -51,15 +52,16 @@ function SupportMissionPage() {
             </p>
           </div>
           <div className="flex flex-col space-y-4 mt-6">
-            <button className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200">
+            {/* Donation Buttons converted to Links */}
+            <Link to="/donate/1" className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200 no-underline">
               £1/mo
-            </button>
-            <button className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200">
+            </Link>
+            <Link to="/donate/3" className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200 no-underline">
               £3/mo
-            </button>
-            <button className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200">
+            </Link>
+            <Link to="/donate/5" className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200 no-underline">
               £5/mo
-            </button>
+            </Link>
           </div>
         </div>
 

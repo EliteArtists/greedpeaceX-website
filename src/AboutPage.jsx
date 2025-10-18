@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function AboutPage({ goToSupportMissionPage, goToActionCampaignsPage }) {
+function AboutPage() {
   return (
     <div className="bg-black text-white p-8 font-sans min-h-screen max-w-4xl mx-auto">
       <div className="text-4xl md:text-6xl font-extrabold leading-tight mb-8">
@@ -28,18 +29,28 @@ function AboutPage({ goToSupportMissionPage, goToActionCampaignsPage }) {
       <div className="mb-8">
         <h2 className="text-3xl font-bold mb-4">OUR WORK</h2>
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="cursor-pointer" onClick={goToSupportMissionPage}>
-            <h3 className="text-xl font-bold">INVESTIGATIONS</h3>
-            <p className="text-gray-400">
-              Uncovering lies, financial exploitation, and environmental harm.
-            </p>
-          </div>
-          <div className="cursor-pointer" onClick={goToActionCampaignsPage}>
-            <h3 className="text-xl font-bold">ACTION CAMPAIGNS</h3>
-            <p className="text-gray-400">
-              Mobilising public petitions, protests, and direct digital pressure.
-            </p>
-          </div>
+          
+          {/* Investigations Link (to Support page) */}
+          <Link to="/support" className="cursor-pointer text-white no-underline hover:text-gray-400">
+            <div>
+              <h3 className="text-xl font-bold">INVESTIGATIONS</h3>
+              <p className="text-gray-400">
+                Uncovering lies, financial exploitation, and environmental harm.
+              </p>
+            </div>
+          </Link>
+          
+          {/* Action Campaigns Link */}
+          <Link to="/action" className="cursor-pointer text-white no-underline hover:text-gray-400">
+            <div>
+              <h3 className="text-xl font-bold">ACTION CAMPAIGNS</h3>
+              <p className="text-gray-400">
+                Mobilising public petitions, protests, and direct digital pressure.
+              </p>
+            </div>
+          </Link>
+          
+          {/* Legal Battles (Static) */}
           <div>
             <h3 className="text-xl font-bold">LEGAL BATTLES</h3>
             <p className="text-gray-400">

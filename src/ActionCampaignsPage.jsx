@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
-import ShareModal from './ShareModal'; // We'll create this next
+import ShareModal from './ShareModal';
 
 function ActionCampaignsPage() {
   const [isPetitionModalOpen, setIsPetitionModalOpen] = useState(false);
@@ -39,17 +39,18 @@ function ActionCampaignsPage() {
       <div className="max-w-6xl mx-auto mt-12">
         <h2 className="text-3xl font-bold mb-8">CURRENT CAMPAIGNS</h2>
         <div className="grid md:grid-cols-3 gap-8 text-center">
-          {/* Expose Greenwashing Lies Campaign */}
+          
+          {/* Box 1 (Red): The Real Cost Of Green campaign. */}
           <div className="p-6 bg-gray-900 border-2 border-red-600 flex flex-col justify-between">
             <div>
-              <h3 className="text-xl md:text-2xl font-bold mb-4">EXPOSE<br/>GREENWASHING<br/>LIES</h3>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">THE REAL COST<br/>OF GREEN</h3>
               <p className="text-gray-400 mt-4 text-sm md:text-base">
-                Hold polluters accountable for false eco-friendly claims
+                Demand transparency from M&S on packaging profits.
               </p>
             </div>
             <div className="flex flex-col space-y-4 mt-6">
               <button
-                onClick={() => openPetitionModal('greenwashing')}
+                onClick={() => openPetitionModal('realcost')}
                 className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200"
               >
                 SIGN THE PETITION
@@ -63,17 +64,17 @@ function ActionCampaignsPage() {
             </div>
           </div>
 
-          {/* Tesco Campaign */}
+          {/* Box 2 (Yellow): THE INVISIBLE HAND */}
           <div className="p-6 bg-gray-900 border-2 border-yellow-400 flex flex-col justify-between">
             <div>
-              <h3 className="text-xl md:text-2xl font-bold mb-4">TESCO<br/>CASHING IN ON<br/>PLASTIC BAGS</h3>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">THE INVISIBLE<br/>HAND</h3>
               <p className="text-gray-400 mt-4 text-sm md:text-base">
-                Demand an end to profiteering from public needs
+                Expose the monopolies controlling food, energy, and rent.
               </p>
             </div>
             <div className="flex flex-col space-y-4 mt-6">
               <button
-                onClick={() => openPetitionModal('tesco')}
+                onClick={() => openPetitionModal('invisiblehand')}
                 className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200"
               >
                 SIGN THE PETITION
@@ -87,17 +88,17 @@ function ActionCampaignsPage() {
             </div>
           </div>
 
-          {/* Thames Campaign */}
+          {/* Box 3 (Blue): Corporate PR Firms */}
           <div className="p-6 bg-gray-900 border-2 border-blue-600 flex flex-col justify-between">
             <div>
-              <h3 className="text-xl md:text-2xl font-bold mb-4">AMPLIFY<br/>#JUSTICEFOR<br/>THAMES</h3>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">WEAPONIZING THE<br/>TRUTH</h3>
               <p className="text-gray-400 mt-4 text-sm md:text-base">
-                Spread the message for stronger water protection laws
+                Investigate how corporate PR firms distort public information.
               </p>
             </div>
             <div className="flex flex-col space-y-4 mt-6">
               <button
-                onClick={() => openPetitionModal('thames')}
+                onClick={() => openPetitionModal('weaponizingtruth')}
                 className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200"
               >
                 SIGN THE PETITION
