@@ -6,6 +6,13 @@ function SupportMissionPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState('');
 
+  // Define the live PayPal URLs
+  const PAYPAL_URLS = {
+    '1': "https://www.paypal.com/ncp/payment/WDAEPFRUWD5FQ",
+    '3': "https://www.paypal.com/ncp/payment/VUJCY67EFBAX2",
+    '5': "https://www.paypal.com/ncp/payment/97FL3MRFPAYVJ",
+  };
+
   const openModal = (type) => {
     setModalType(type);
     setIsModalOpen(true);
@@ -43,7 +50,7 @@ function SupportMissionPage() {
           </button>
         </div>
 
-        {/* Fund Investigations Column - Uses Link for routing */}
+        {/* Fund Investigations Column - Uses PayPal Live Links */}
         <div className="p-6 bg-gray-900 border-2 border-yellow-400 flex flex-col justify-between">
           <div>
             <h3 className="text-xl md:text-2xl font-bold mb-2">FUND<br/>INVESTIGATIONS</h3>
@@ -52,14 +59,14 @@ function SupportMissionPage() {
             </p>
           </div>
           <div className="flex flex-col space-y-4 mt-6">
-            {/* Donation Buttons converted to Links */}
-            <Link to="/donate/1" className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200 no-underline">
+            {/* Donation Buttons converted to Links, using PayPal URLs */}
+            <Link to={PAYPAL_URLS['1']} target="_blank" rel="noopener noreferrer" className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200 no-underline">
               £1/mo
             </Link>
-            <Link to="/donate/3" className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200 no-underline">
+            <Link to={PAYPAL_URLS['3']} target="_blank" rel="noopener noreferrer" className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200 no-underline">
               £3/mo
             </Link>
-            <Link to="/donate/5" className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200 no-underline">
+            <Link to={PAYPAL_URLS['5']} target="_blank" rel="noopener noreferrer" className="w-full bg-white text-black py-4 px-6 font-bold text-lg hover:bg-gray-200 transition-colors duration-200 no-underline">
               £5/mo
             </Link>
           </div>
