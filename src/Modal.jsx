@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Get your Supabase project URL from your App.jsx or Supabase dashboard
 const SUPABASE_URL = 'https://hokibuzggipohnopetld.supabase.co';
@@ -12,19 +12,42 @@ function Modal({ isOpen, onClose, type, isPetition }) {
   const [file, setFile] = useState(null);
   const [submissionStatus, setSubmissionStatus] = useState('idle'); // idle, submitting, success, error
 
-  if (!isOpen) return null;
+  // FIX: Reset all state when the modal opens (isOpen becomes true)
+  useEffect(() => {
+    if (isOpen) {
+      setEmail('');
+      setPhone('');
+      setMessage('');
+      setAffiliation('');
+      setInterest('');
+      setFile(null);
+      setSubmissionStatus('idle'); // Crucial: Resets success/error status
+    }
+  }, [isOpen]); 
 
+  if (!isOpen) return null;
+  // ... (rest of the component logic for handleSubmit and renderFields remains the same)
+  // ... (The rest of the component is long, so I'll provide the entire block with the necessary imports and exports)
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmissionStatus('submitting');
 
-    // 1. FRONT-END VALIDATION (as discussed)
-    if ((!email && type !== 'whistleblow' && !isPetition) ||
+    // 1. FRONT-END VALIDATION
+    const isEmailRequired = type !== 'whistleblow'; 
+    const isAffiliationRequired = type === 'media';
+    const isPhoneRequired = type === 'volunteer';
+    const isInterestRequired = type === 'volunteer';
+    
+    // Check if required fields have content
+    if (
+        (isEmailRequired && !email) ||
         (type === 'general' && !message) ||
-        (type === 'media' && !affiliation) ||
-        (type === 'media' && !message) ||
-        (type === 'volunteer' && !phone) ||
-        (type === 'volunteer' && !interest)
+        (isAffiliationRequired && !affiliation) ||
+        (isAffiliationRequired && !message) || // Media requires affiliation AND message
+        (isPhoneRequired && !phone) ||
+        (isInterestRequired && !interest) ||
+        (type === 'whistleblow' && !message) // Whistleblow requires message/tip
     ) {
       alert('Please fill out all required fields.');
       setSubmissionStatus('error');
@@ -35,12 +58,10 @@ function Modal({ isOpen, onClose, type, isPetition }) {
     const payload = {
       type: type,
       email: email,
-      phone: phone || null, // Ensure phone is null if empty
+      phone: phone || null,
       message: message || null,
-      campaign_slug: isPetition ? type : null, // For petitions, use the type as the slug
+      campaign_slug: isPetition ? type : null, 
       affiliation: affiliation || null,
-      // NOTE: File upload for whistleblower is complex and left for later development, 
-      // but the message/details will be submitted.
     };
 
     // 3. SEND DATA TO SUPABASE EDGE FUNCTION
@@ -51,30 +72,20 @@ function Modal({ isOpen, onClose, type, isPetition }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          // Note: CORS fix is handled by the live Edge Function deployment and not needed here
         },
         body: JSON.stringify(payload),
       });
 
       if (response.ok) {
         setSubmissionStatus('success');
-        // Clear forms after successful submission
-        setEmail('');
-        setPhone('');
-        setMessage('');
-        setAffiliation('');
-        setInterest('');
-        setFile(null);
-        
-        // Auto-close modal after a delay for user to see success message
-        setTimeout(onClose, 2000); 
+        setTimeout(onClose, 2000); // Auto-close modal after a delay for user to see success message
 
       } else {
-        // Handle server-side errors from the Edge Function
         setSubmissionStatus('error');
         console.error('Submission failed on server:', await response.json());
       }
     } catch (error) {
-      // Handle network or fetch errors
       setSubmissionStatus('error');
       console.error('Network Error:', error);
     }
@@ -97,51 +108,62 @@ function Modal({ isOpen, onClose, type, isPetition }) {
 
   const renderFields = () => {
     // Shared styling for inputs
-    const inputClasses = "w-full p-3 mb-4 border-2 border-gray-300 rounded-md focus:outline-none focus:border-green-700";
+    const inputClasses = "w-full p-3 mb-4 border-2 border-gray-300 rounded-md focus:outline-none";
     
+    const getBorderColor = () => {
+        switch (type) {
+            case 'general': return 'focus:border-green-700';
+            case 'whistleblow': return 'focus:border-red-600';
+            case 'media': return 'focus:border-yellow-400';
+            case 'volunteer': return 'focus:border-blue-600';
+            default: return 'focus:border-green-700'; // signup/patron/petition
+        }
+    };
+    const inputStyle = (required) => `${inputClasses} ${getBorderColor()}`;
+
     // Determine required status for specific inputs
-    const isMessageRequired = type === 'general' || type === 'media';
     const isAffiliationRequired = type === 'media';
-    const isVolunteerRequired = type === 'volunteer';
-    const isEmailRequired = type !== 'whistleblow'; // Email is optional for whistleblow
+    const isPhoneRequired = type === 'volunteer';
+    const isInterestRequired = type === 'volunteer';
+    const isEmailRequired = type !== 'whistleblow'; 
+    const isWhistleblow = type === 'whistleblow';
 
     switch (type) {
       case 'general':
-      case 'whistleblow':
       case 'media':
       case 'volunteer':
         return (
           <>
             {(type === 'whistleblow') && <p className="text-sm text-gray-600 mb-4">Your personal details are optional for this form.</p>}
 
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={`Email (${isEmailRequired ? 'required' : 'optional'})`} className={`${inputClasses} ${isEmailRequired && 'required-field'}`} required={isEmailRequired} />
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={`Email (${isEmailRequired ? 'required' : 'optional'})`} className={inputStyle(isEmailRequired)} required={isEmailRequired} />
             
-            <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder={`Phone Number (${isVolunteerRequired ? 'required' : 'optional'})`} className={inputClasses} required={isVolunteerRequired} />
+            <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder={`Phone Number (${isPhoneRequired ? 'required' : 'optional'})`} className={inputStyle(isPhoneRequired)} required={isPhoneRequired} />
             
             {isAffiliationRequired && (
-              <input type="text" value={affiliation} onChange={(e) => setAffiliation(e.target.value)} placeholder="Affiliation / Publication (required)" className={inputClasses} required />
+              <input type="text" value={affiliation} onChange={(e) => setAffiliation(e.target.value)} placeholder="Affiliation / Publication (required)" className={inputStyle(true)} required />
             )}
             
-            {isMessageRequired && (
-              <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder={`Message (${isMessageRequired ? 'required' : 'optional'})`} className={`${inputClasses} h-24`} required />
+            {(type === 'general' || type === 'media') && (
+                <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder={`Message (required)`} className={`${inputStyle(true)} h-24`} required />
             )}
-            
-            {isVolunteerRequired && (
-              <textarea value={interest} onChange={(e) => setInterest(e.target.value)} placeholder="Area of interest (required)" className={`${inputClasses} h-24`} required />
+
+            {isInterestRequired && (
+              <textarea value={interest} onChange={(e) => setInterest(e.target.value)} placeholder="Area of interest (required)" className={`${inputStyle(true)} h-24`} required />
             )}
 
             {type === 'whistleblow' && (
               <>
                 <label htmlFor="file-upload" className="block text-gray-700 font-bold mb-2">Upload a file (optional)</label>
                 <input type="file" onChange={(e) => setFile(e.target.files[0])} className={`${inputClasses}`} />
-                <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Your evidence or tip here (required)" className={`${inputClasses} h-24`} required={true} />
+                <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Your evidence or tip here (required)" className={`${inputStyle(true)} h-24`} required={true} />
               </>
             )}
           </>
         );
+
       default:
         // Default case for signup/patron/petition forms
-        const isDefaultPetition = isPetition || type === 'signup' || type === 'patron';
         return (
           <>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email (required)" className={inputClasses} required />
