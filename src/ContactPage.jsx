@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react'; // Added useRef
 import Modal from './Modal';
 
 function ContactPage() {
@@ -11,6 +11,8 @@ function ContactPage() {
   };
 
   const closeModal = () => {
+    // NOTE: The Modal.jsx component is responsible for resetting the submission status
+    // on successful submit, which it does before calling onClose().
     setIsModalOpen(false);
     setModalType('');
   };
@@ -21,7 +23,7 @@ function ContactPage() {
         CONTACT
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto text-center">
+      <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto text-center">
         {/* Get In Touch */}
         <div className="p-6 bg-gray-900 border-2 border-green-700">
           <h3 className="text-2xl font-bold mb-2">CONTACT</h3>
