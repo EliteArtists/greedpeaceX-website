@@ -144,7 +144,6 @@ function Modal({ isOpen, onClose, type, isPetition }) {
         const isDefaultPetition = isPetition || type === 'signup' || type === 'patron';
         return (
           <>
-            {isDefaultPetition && <p className="text-sm text-gray-600 mb-4">Your details will be recorded for this specific action.</p>}
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email (required)" className={inputClasses} required />
             <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number (optional)" className={inputClasses} />
           </>
