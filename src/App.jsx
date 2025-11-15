@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Link, useParams, Navigate } from 'react-router-dom'; // <-- IMPORTS ADDED
+import { BrowserRouter, Routes, Route, Link, useParams, Navigate } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
 import GreedIndexWidget from './GreedIndexWidget';
 import GreedIndexPage from './GreedIndexPage';
@@ -8,6 +8,7 @@ import SupportMissionPage from './SupportMissionPage';
 import ActionCampaignsPage from './ActionCampaignsPage';
 import ContactPage from './ContactPage';
 import AboutPage from './AboutPage';
+import InvisibleHandReport from './InvisibleHandReport'; // <-- NEW IMPORT
 
 // Initialize the Supabase client with the public anonymous key
 const supabase = createClient(
@@ -50,10 +51,9 @@ const HomePage = ({ greedScore }) => (
         </Link>
       </header>
       <main
-        // This main area now links to a dynamic Report route
+        // This main area now links to the current featured Report route (M&S)
         className="cursor-pointer bg-yellow-400 text-black p-6 my-4"
       >
-        {/* We use a hardcoded link here for the featured report */}
         <Link to="/report/real-cost-of-green" className="text-black no-underline">
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-center">
             THE REAL COST OF GREEN
@@ -68,8 +68,9 @@ const HomePage = ({ greedScore }) => (
           INVESTIGATIONS
         </h2>
         <div className="grid md:grid-cols-3 gap-4 mt-4">
-          {/* Action Blocks - Link to corresponding pages */}
+          {/* Action Blocks - UPDATED LINK */}
           <div className="bg-red-600 text-white p-4 flex flex-col justify-between text-center">
+            {/* LINK NOW GOES TO THE INVISIBLE HAND REPORT */}
             <Link to="/report/invisible-hand" className="text-white no-underline">
               <div>
                 <h3 className="text-xl font-bold">UPCOMING</h3>
@@ -142,6 +143,23 @@ function App() {
     );
   }
 
+  // --- REPORT ROUTE LOGIC ---
+  // This component now handles rendering the correct report based on the URL slug
+  const ReportRouteHandler = () => {
+    const { slug } = useParams(); // Get the dynamic part of the URL
+    
+    switch (slug) {
+      case 'real-cost-of-green':
+        return <ReportPage reportComponent="mands" />; // Pass identifier
+      case 'invisible-hand':
+        return <ReportPage reportComponent="invisiblehand" />; // Pass identifier
+      default:
+        return <Navigate to="/" replace />; // Redirect to home if slug is unknown
+    }
+  };
+  // --- END REPORT ROUTE LOGIC ---
+
+
   return (
     <BrowserRouter>
       <Routes>
@@ -152,8 +170,8 @@ function App() {
         <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
         <Route path="/index" element={<Layout><GreedIndexPage /></Layout>} />
         
-        {/* Dynamic Report Route - All reports will use this structure */}
-        <Route path="/report/:slug" element={<Layout><ReportPage /></Layout>} />
+        {/* Dynamic Report Route */}
+        <Route path="/report/:slug" element={<Layout><ReportRouteHandler /></Layout>} />
       </Routes>
     </BrowserRouter>
   );
