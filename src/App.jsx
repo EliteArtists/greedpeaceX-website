@@ -70,7 +70,7 @@ const HomePage = ({ greedScore }) => (
         <div className="grid md:grid-cols-3 gap-4 mt-4">
           {/* Action Blocks - Link to corresponding pages */}
           <div className="bg-red-600 text-white p-4 flex flex-col justify-between text-center">
-            <Link to="/investigations/upcoming" className="text-white no-underline">
+            <Link to="/report/invisible-hand" className="text-white no-underline">
               <div>
                 <h3 className="text-xl font-bold">UPCOMING</h3>
                 <h4 className="text-2xl font-bold mt-2">THE INVISIBLE HAND</h4>
