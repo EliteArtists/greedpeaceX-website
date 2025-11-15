@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useParams, Navigate } from 'react-router-dom'; // <-- IMPORTS ADDED
 import { createClient } from '@supabase/supabase-js';
 import GreedIndexWidget from './GreedIndexWidget';
 import GreedIndexPage from './GreedIndexPage';
