@@ -161,6 +161,7 @@ function InvisibleHandReportContent() {
                         <td className="py-2 px-4 border-b">Shell</td>
                         <td className="py-2 px-4 border-b">Energy (global)</td>
                         <td className="py-2 px-4 border-b">Integrated production</td>
+                        <td className="py-2 px-4 border-b">Lobbying, LNG control, supply contracts</td>
                     </tr>
                     <tr>
                         <td className="py-2 px-4 border-b">Blackstone</td>
@@ -247,5 +248,4 @@ function InvisibleHandReportContent() {
     </>
 );
 
-// We need to export this function for other files to import
-export default InvisibleHandReportContent;
+export default InvisibleHandReportContent; // <--- THIS LINE WAS MISSING AND CAUSED THE BUILD FAILURE
