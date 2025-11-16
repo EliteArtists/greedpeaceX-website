@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# This section ensures _redirects and _headers are copied to the build directory
+# so Netlify can read them correctly.
+[build.processing]
+  skip_processing = false
+
+[build.processing.redirects]
+  # Netlify usually looks for them in the publish folder, 
+  # this ensures they are processed correctly if they were in the root.
+  # But we will use the build settings above for a clean approach.
+  
+[context.production]
+  environment = {}
