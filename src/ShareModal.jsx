@@ -33,16 +33,18 @@ function ShareModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   // The base URL for the current campaign is the live site's URL
+  // NOTE: This will share the *current* page the user is viewing.
   const shareUrl = encodeURIComponent(window.location.href); 
-  const shareText = encodeURIComponent("I just read this incredible investigation from GreedPeaceX: "); 
+  const shareText = encodeURIComponent("I just read this incredible investigation from GreedPeaceX: "); // Simpler text for subject lines
   const fullShareText = encodeURIComponent("I just read this incredible investigation from GreedPeaceX. It’s time to fight back against corporate greed. #GreedPeaceX #ActionCampaign");
 
   const shareLinks = {
     X: `https://twitter.com/intent/tweet?url=${shareUrl}&text=${fullShareText}`,
     Facebook: `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`,
-    LinkedIn: `https://www.linkedin.com/shareArticle?url=${shareUrl}&title=${shareText}&summary=${fullShareText}`, 
-    Mail: `mailto:?subject=${shareText}&body=${fullShareText}%0A%0A${window.location.href}`, 
-    WhatsApp: `https://wa.me/?text=${fullShareText}%20${shareUrl}`, 
+    LinkedIn: `https://www.linkedin.com/shareArticle?url=${shareUrl}&title=${shareText}&summary=${fullShareText}`, // Added title/summary for LinkedIn clarity
+    // FIX: Using a simple subject and moving the full text/URL into the body for Mail
+    Mail: `mailto:?subject=${shareText}&body=${fullShareText}%0A%0A${window.location.href}`, // %0A is a line break
+    WhatsApp: `https://wa.me/?text=${fullShareText}%20${shareUrl}`, // Using wa.me API endpoint is often more reliable
   };
 
   return (
@@ -59,28 +61,28 @@ function ShareModal({ isOpen, onClose }) {
 
         <div className="flex justify-center space-x-6">
           
-          {/* X (Twitter) - Light Blue */}
-          <a href={shareLinks.X} target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:text-sky-600 transition-colors duration-200">
+          {/* X (Twitter) */}
+          <a href={shareLinks.X} target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:text-blue-500 transition-colors duration-200">
             <ShareIcons.X />
           </a>
           
-          {/* Facebook - Darker Blue */}
-          <a href={shareLinks.Facebook} target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-800 transition-colors duration-200">
+          {/* Facebook */}
+          <a href={shareLinks.Facebook} target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:text-blue-600 transition-colors duration-200">
             <ShareIcons.Facebook />
           </a>
           
-          {/* LinkedIn - Professional Blue */}
-          <a href={shareLinks.LinkedIn} target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:text-blue-900 transition-colors duration-200">
+          {/* LinkedIn */}
+          <a href={shareLinks.LinkedIn} target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:text-blue-700 transition-colors duration-200">
             <ShareIcons.LinkedIn />
           </a>
           
-          {/* Mail - Red */}
-          <a href={shareLinks.Mail} className="text-red-600 hover:text-red-700 transition-colors duration-200">
+          {/* Mail */}
+          <a href={shareLinks.Mail} className="text-gray-900 hover:text-red-600 transition-colors duration-200">
             <ShareIcons.Mail />
           </a>
           
-          {/* WhatsApp - Green */}
-          <a href={shareLinks.WhatsApp} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-600 transition-colors duration-200">
+          {/* WhatsApp */}
+          <a href={shareLinks.WhatsApp} target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:text-green-500 transition-colors duration-200">
             <ShareIcons.WhatsApp />
           </a>
         </div>
