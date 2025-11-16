@@ -1,10 +1,10 @@
 import React from 'react';
 
-// The main Report Content component
-function InvisibleHandReportContent() {
+// The main Report Content component defined using a const Arrow Function
+const InvisibleHandReportContent = () => {
   return (
     <>
-        {/* NOTE: The main title header (THE INVISIBLE HAND) is now handled by ReportPage.jsx (the wrapper component) */}
+        {/* NOTE: The main title header (THE INVISIBLE HAND) is handled by ReportPage.jsx (the wrapper component) */}
 
         {/* EXECUTIVE SUMMARY */}
         <div className="mb-8 pb-4">
@@ -246,6 +246,7 @@ function InvisibleHandReportContent() {
             A deeper regulatory realignment is necessary to restore democratic oversight over essential living systems. The concentration documented here is the endpoint of decades of policy neglect. Reversing it will require political resolve equal to the scale of the corporate power amassed.
         </div>
     </>
-);
+  );
+}; // <-- Changed to arrow function closure (with semicolon)
 
-export default InvisibleHandReportContent; // <--- THIS LINE WAS MISSING AND CAUSED THE BUILD FAILURE
+export default InvisibleHandReportContent; // <-- Placed cleanly after the function definition.
