@@ -2,15 +2,19 @@
   command = "npm run build"
   publish = "dist"
 
-# This section ensures _redirects and _headers are copied to the build directory
-# so Netlify can read them correctly.
-[build.processing]
-  skip_processing = false
+# This is the essential configuration to ensure Netlify correctly applies 
+# the _redirects file from the repository root to the final deployed output.
+# It tells Netlify to use the configuration file from the repository's source 
+# root directory, not just the 'dist' folder.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
 
-[build.processing.redirects]
-  # Netlify usually looks for them in the publish folder, 
-  # this ensures they are processed correctly if they were in the root.
-  # But we will use the build settings above for a clean approach.
-  
-[context.production]
-  environment = {}
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
