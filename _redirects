@@ -1,5 +1,0 @@
-# Force HTTPS for all production traffic (good practice)
-http://* https://:splat 301!
-
-# SPA 404 Fallback
-/* /index.html 200
