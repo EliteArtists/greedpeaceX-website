@@ -1,71 +1,78 @@
-import React, { useEffect, useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import React, { useState } from 'react';
 
-// Initialize the Supabase client with the public anonymous key
-const supabase = createClient(
-  'https://hokibuzggipohnopetld.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJipssiOiJzdXBhYmFzZSIsInJlZiI6Imhva2lidXpnZ2lwb2hub3BldGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ3NTg2NjUsImV4cCI6MjA3MDMzNDY2NX0.Hs7XWmLMs9wYktt1UFp1DtTp-3VK_fRCni2g-3TyA9g'
+// --- DATA FROM AI AGENT ---
+const MANUAL_SCORES = [
+  {
+    id: 'tesco-manual',
+    greed_targets: { name: 'Tesco' },
+    greed_score: 13,
+    community_harm: 13,
+    profit_from_necessity: 19,
+    obscurity: 10,
+    exploit_ratio: 10,
+    pay_inequality: 8,
+    responsiveness: 3,
+    rationale: {
+      environmental_harm: "Tesco has made notable progress on its operational footprint, reporting about a 65% reduction in emissions from its own operations since 2015 and using 100% renewable electricity across its estate. However, its overall environmental impact remains large because most emissions sit in its supply chain, and watchdogs still score it poorly on climate and agriculture while NGOs continue to raise concerns about forest-risk commodities.",
+      profit_from_necessity: "Groceries are essential goods, and recent coverage highlights that Tesco has generated multi-billion-pound profits and increased market share during the cost-of-living crisis. Union leaders describe this as 'profiteering pure and simple'. Tesco has raised its profit forecast and executed sizeable share buybacks while trumpeting price cuts, indicating it can protect margins even as consumer prices remain high.",
+      greenwashing: "Tesco strongly markets its sustainability strategy and net-zero plans. Yet NGOs and campaigners have accused it of greenwashing, particularly over continued sales of Brazilian meat and other forest-risk products despite deforestation pledges, with calls for the CMA to scrutinise whether its green claims mislead customers under the Green Claims Code.",
+      worker_exploitation: "Tesco has faced repeated disputes over pay and conditions: distribution workers in Great Britain and staff in Ireland have rejected pay offers and mounted protests. In 2024 it also lost a significant UK legal case over attempts to 'fire and rehire' staff on lower pay, and ethical ratings flag ongoing concerns about workers' rights.",
+      pay_inequality: "Tesco’s CEO Ken Murphy was paid around £9.9m in the latest reported year, more than doubling his previous package and equating to roughly 373–431 times the typical Tesco worker’s pay. These rewards coincided with strong profits and ongoing cost-cutting, leading unions to frame the pay gap as socially damaging.",
+      resistance_to_accountability: "Tesco has a history of scrutiny from the Groceries Code Adjudicator and CMA. While it publishes extensive sustainability reporting, persistent NGO accusations of greenwashing around deforestation suggest it has at times been slow to fully align its public claims with its underlying sourcing practices."
+    }
+  },
+  {
+    id: 'bp-manual',
+    greed_targets: { name: 'BP' },
+    greed_score: 18,
+    community_harm: 27,
+    profit_from_necessity: 22,
+    obscurity: 14,
+    exploit_ratio: 11,
+    pay_inequality: 8,
+    responsiveness: 4,
+    rationale: {
+      environmental_harm: "BP remains one of the largest corporate contributors to the climate crisis. In February 2025 the company publicly shifted strategy to increase annual oil and gas spending to about $10bn while cutting more than $5bn from its low-carbon investment plans, doubling down on high-emissions hydrocarbons rather than leading a transition.",
+      profit_from_necessity: "BP sells essential energy products and generated massive profits ($14bn in 2023, $8.9bn in 2024) even as households faced high fuel costs. It has maintained dividends and share buybacks while prioritizing free cash flow over low-carbon spending, framed by critics as excessive fossil-fuel profiteering from a basic necessity.",
+      greenwashing: "Academic and NGO work has repeatedly concluded that big oil climate narratives amount to greenwashing. BP withdrew ads after complaints they misled the public by foregrounding small renewables activities while >96% of spend remained on oil and gas. In 2025 it abandoned its green strategy, slashing renewables spending.",
+      worker_exploitation: "This month BP told 5,400 staff at its UK forecourts that it will remove paid rest breaks and most bank-holiday premiums to offset the cost of the real living wage. Unions say this wipes out the headline pay rise. Separately, executive bonuses were trimmed after contractor fatalities, indicating ongoing workplace safety issues.",
+      pay_inequality: "BP’s CEO earned ~£8m in 2023 and £5.4m in 2024. Campaigners describe these packages as obscene given the cost-of-living crisis. Set against the removal of paid breaks for forecourt workers, this pattern indicates extreme internal pay disparity.",
+      resistance_to_accountability: "BP faces mounting climate litigation, including a 2024 suit by the city of Chicago for deceiving the public about fossil fuel dangers. A US Senate report found big oil companies privately acknowledged efforts to downplay the climate crisis while lobbying against laws they publicly claimed to support."
+    }
+  }
+];
+
+// Component for Individual Score Cells with Rationale Tooltip
+const ScoreWithTooltip = ({ score, rationale }) => (
+  <div className="group relative flex items-center justify-center cursor-help w-full h-full">
+    <span className={`font-bold ${score > 15 ? 'text-red-400' : 'text-gray-300'}`}>{score}</span>
+    
+    {/* Rationale Tooltip */}
+    <div className="absolute top-full mt-2 w-72 p-4 bg-gray-900 text-white text-xs font-normal rounded shadow-2xl border border-gray-700 hidden group-hover:block z-50 text-left leading-relaxed">
+      {rationale}
+      {/* Arrow */}
+      <div className="absolute -top-2 left-1/2 -ml-2 border-8 border-transparent border-b-gray-700"></div>
+    </div>
+  </div>
 );
 
-// Tooltip Component for Table Headers
+// Component for Table Headers (General Definitions)
 const HeaderWithTooltip = ({ title, description }) => (
   <div className="group relative flex items-center justify-center cursor-help">
     <span className="border-b border-dotted border-gray-400 hover:border-white transition-colors">{title}</span>
-    {/* Info Icon */}
     <span className="ml-1 text-xs text-gray-400 opacity-70">ⓘ</span>
     
-    {/* Tooltip Popup - UPDATED POSITION: Now appears BELOW the header */}
+    {/* Definition Tooltip */}
     <div className="absolute top-full mt-2 w-64 p-4 bg-white text-black text-xs font-normal rounded shadow-xl hidden group-hover:block z-50 text-left leading-relaxed border border-gray-200">
       {description}
-      {/* Little arrow pointing UP (at the top of the box) */}
       <div className="absolute -top-2 left-1/2 -ml-2 border-8 border-transparent border-b-white"></div>
     </div>
   </div>
 );
 
 function GreedIndexPage() {
-  const [scores, setScores] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchScores() {
-      // Fetch the most recent score for each company
-      const { data, error } = await supabase
-        .from('greed_daily_scores')
-        .select('*, greed_targets(name)')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('Error fetching scores:', error);
-      } else {
-        // Group scores by target_id to get only the most recent entry
-        const latestScoresMap = new Map();
-        if (data) {
-          data.forEach(score => {
-            if (!latestScoresMap.has(score.target_id)) {
-              latestScoresMap.set(score.target_id, score);
-            }
-          });
-        }
-        const latestScores = Array.from(latestScoresMap.values());
-        
-        // Sort the latest scores by greed_score in descending order
-        latestScores.sort((a, b) => b.greed_score - a.greed_score);
-        
-        setScores(latestScores);
-      }
-      setLoading(false);
-    }
-    fetchScores();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-black text-white">
-        Loading Greed Index...
-      </div>
-    );
-  }
+  // We use the manual scores directly for now
+  const scores = MANUAL_SCORES;
 
   return (
     <div className="bg-black text-white min-h-screen p-4 md:p-8">
@@ -78,94 +85,99 @@ function GreedIndexPage() {
       </div>
 
       {/* DATA TABLE */}
-      <div className="overflow-x-auto overflow-y-auto border border-gray-700 rounded-lg shadow-2xl" style={{ maxHeight: '600px' }}>
-        <table className="w-full text-left border-collapse">
+      <div className="overflow-x-auto overflow-y-auto border border-gray-700 rounded-lg shadow-2xl" style={{ maxHeight: '600px', minHeight: '300px' }}>
+        <table className="w-full text-left border-collapse relative">
           <thead>
             <tr className="bg-green-700 text-white sticky top-0 z-20 shadow-md">
-              <th className="p-4 text-left font-bold border-b border-green-800">Company</th>
+              <th className="p-4 text-left font-bold border-b border-green-800 w-1/6">Company</th>
               
               <th className="p-4 text-center font-bold border-b border-green-800">
                 <HeaderWithTooltip 
                   title="Env. Harm (30%)" 
-                  description="Measures the scale of ecological damage caused by the company’s core operations. Includes pollution, carbon emissions, habitat destruction, water contamination, and unsustainable supply chains." 
+                  description="Measures the scale of ecological damage caused by the company’s core operations." 
                 />
               </th>
               
               <th className="p-4 text-center font-bold border-b border-green-800">
                 <HeaderWithTooltip 
-                  title="Profit from Harm (25%)" 
-                  description="Evaluates how much of the company’s revenue depends on harmful or exploitative activities. The more a business earns from socially or environmentally damaging practices, the higher this score." 
+                  title="Profit (25%)" 
+                  description="Evaluates how much of the company’s revenue depends on harmful or exploitative activities." 
                 />
               </th>
               
               <th className="p-4 text-center font-bold border-b border-green-800">
                 <HeaderWithTooltip 
-                  title="Greenwashing (15%)" 
-                  description="Assesses misleading environmental claims, deceptive marketing, or sustainability PR that hides ongoing harm. Higher scores indicate companies exaggerating or fabricating their ‘green’ credentials." 
+                  title="Greenwash (15%)" 
+                  description="Assesses misleading environmental claims, deceptive marketing, or sustainability PR." 
                 />
               </th>
               
               <th className="p-4 text-center font-bold border-b border-green-800">
                 <HeaderWithTooltip 
                   title="Worker Exp. (15%)" 
-                  description="Scores the company’s impact on workers across the supply chain — including unsafe conditions, unfair pay, union busting, overwork, outsourcing abuse, and use of precarious labour." 
+                  description="Scores the company’s impact on workers across the supply chain." 
                 />
               </th>
               
               <th className="p-4 text-center font-bold border-b border-green-800">
                 <HeaderWithTooltip 
                   title="Pay Gap (10%)" 
-                  description="Measures inequality inside the company by comparing CEO compensation to median worker pay. Extreme pay gaps signal internal greed and systemic exploitation." 
+                  description="Measures inequality inside the company by comparing CEO compensation to median worker pay." 
                 />
               </th>
               
               <th className="p-4 text-center font-bold border-b border-green-800">
                 <HeaderWithTooltip 
                   title="Accountability (5%)" 
-                  description="Evaluates the company’s willingness to be transparent, admit wrongdoing, comply with regulations, and face consequences. Low accountability increases long-term risk and public harm." 
+                  description="Evaluates the company’s willingness to be transparent and admit wrongdoing." 
                 />
               </th>
               
               <th className="p-4 text-center font-bold border-b border-green-800">
                 <HeaderWithTooltip 
                   title="Total Score" 
-                  description="The combined weighted score of all six categories. Higher totals indicate corporations causing the greatest overall harm relative to profit, public trust, and environmental impact." 
+                  description="The combined weighted score of all six categories." 
                 />
               </th>
             </tr>
           </thead>
           <tbody>
-            {scores.length > 0 ? (
-              scores.map((score, index) => (
-                <tr key={score.id} className={`${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'} hover:bg-gray-700 transition-colors duration-150`}>
-                  <td className="p-4 border-b border-gray-700 font-medium">
-                    {/* Company name will be a link to the profile page */}
-                    <a href={`/company/${score.greed_targets.name}`} className="text-white hover:text-green-400 hover:underline">
-                      {score.greed_targets.name}
-                    </a>
-                  </td>
-                  <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.community_harm}</td>
-                  <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.profit_from_necessity}</td>
-                  <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.obscurity}</td>
-                  <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.exploit_ratio}</td>
-                  <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.pay_inequality}</td>
-                  <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.responsiveness}</td>
-                  <td className="p-4 text-center border-b border-gray-700 font-bold text-xl">
-                    {/* Score will be a link to a detailed report */}
-                    <a href={`/report/${score.id}`} className="text-yellow-400 hover:text-yellow-300 hover:underline">
-                      {score.greed_score}
-                    </a>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="8" className="p-8 text-center text-gray-400">
-                  {/* Updated message to be more helpful */}
-                  No data available. Database may be warming up. Please refresh or run the calculation.
+            {scores.map((score, index) => (
+              <tr key={score.id} className={`${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'} hover:bg-gray-700 transition-colors duration-150`}>
+                <td className="p-4 border-b border-gray-700 font-medium">
+                  <a href={`/company/${score.greed_targets.name}`} className="text-white hover:text-green-400 hover:underline text-lg">
+                    {score.greed_targets.name}
+                  </a>
+                </td>
+                
+                {/* Individual Score Cells with Specific Rationale Tooltips */}
+                <td className="p-4 text-center border-b border-gray-700">
+                  <ScoreWithTooltip score={score.community_harm} rationale={score.rationale.environmental_harm} />
+                </td>
+                <td className="p-4 text-center border-b border-gray-700">
+                  <ScoreWithTooltip score={score.profit_from_necessity} rationale={score.rationale.profit_from_necessity} />
+                </td>
+                <td className="p-4 text-center border-b border-gray-700">
+                  <ScoreWithTooltip score={score.obscurity} rationale={score.rationale.greenwashing} />
+                </td>
+                <td className="p-4 text-center border-b border-gray-700">
+                  <ScoreWithTooltip score={score.exploit_ratio} rationale={score.rationale.worker_exploitation} />
+                </td>
+                <td className="p-4 text-center border-b border-gray-700">
+                  <ScoreWithTooltip score={score.pay_inequality} rationale={score.rationale.pay_inequality} />
+                </td>
+                <td className="p-4 text-center border-b border-gray-700">
+                  <ScoreWithTooltip score={score.responsiveness} rationale={score.rationale.resistance_to_accountability} />
+                </td>
+                
+                {/* Total Score */}
+                <td className="p-4 text-center border-b border-gray-700 font-bold text-xl">
+                  <a href={`/report/${score.id}`} className="text-yellow-400 hover:text-yellow-300 hover:underline">
+                    {score.greed_score}
+                  </a>
                 </td>
               </tr>
-            )}
+            ))}
           </tbody>
         </table>
       </div>
