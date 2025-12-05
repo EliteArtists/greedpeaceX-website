@@ -14,11 +14,11 @@ const HeaderWithTooltip = ({ title, description }) => (
     {/* Info Icon */}
     <span className="ml-1 text-xs text-gray-400 opacity-70">ⓘ</span>
     
-    {/* Tooltip Popup - FIXED: White background for visibility */}
-    <div className="absolute bottom-full mb-2 w-64 p-4 bg-white text-black text-xs font-normal rounded shadow-xl hidden group-hover:block z-50 text-left leading-relaxed">
+    {/* Tooltip Popup - UPDATED POSITION: Now appears BELOW the header */}
+    <div className="absolute top-full mt-2 w-64 p-4 bg-white text-black text-xs font-normal rounded shadow-xl hidden group-hover:block z-50 text-left leading-relaxed border border-gray-200">
       {description}
-      {/* Little arrow pointing down */}
-      <div className="absolute top-full left-1/2 -ml-1 border-4 border-transparent border-t-white"></div>
+      {/* Little arrow pointing UP (at the top of the box) */}
+      <div className="absolute -top-2 left-1/2 -ml-2 border-8 border-transparent border-b-white"></div>
     </div>
   </div>
 );
@@ -161,7 +161,8 @@ function GreedIndexPage() {
             ) : (
               <tr>
                 <td colSpan="8" className="p-8 text-center text-gray-400">
-                  No data available. Please check your connection.
+                  {/* Updated message to be more helpful */}
+                  No data available. Database may be warming up. Please refresh or run the calculation.
                 </td>
               </tr>
             )}
