@@ -10,15 +10,15 @@ const supabase = createClient(
 // Tooltip Component for Table Headers
 const HeaderWithTooltip = ({ title, description }) => (
   <div className="group relative flex items-center justify-center cursor-help">
-    <span>{title}</span>
-    {/* Info Icon (Optional hint) */}
+    <span className="border-b border-dotted border-gray-400 hover:border-white transition-colors">{title}</span>
+    {/* Info Icon */}
     <span className="ml-1 text-xs text-gray-400 opacity-70">ⓘ</span>
     
-    {/* Tooltip Popup */}
-    <div className="absolute bottom-full mb-2 w-64 p-3 bg-black text-white text-xs font-normal rounded shadow-lg border border-gray-600 hidden group-hover:block z-50">
+    {/* Tooltip Popup - FIXED: White background for visibility */}
+    <div className="absolute bottom-full mb-2 w-64 p-4 bg-white text-black text-xs font-normal rounded shadow-xl hidden group-hover:block z-50 text-left leading-relaxed">
       {description}
       {/* Little arrow pointing down */}
-      <div className="absolute top-full left-1/2 -ml-1 border-4 border-transparent border-t-black"></div>
+      <div className="absolute top-full left-1/2 -ml-1 border-4 border-transparent border-t-white"></div>
     </div>
   </div>
 );
@@ -40,11 +40,13 @@ function GreedIndexPage() {
       } else {
         // Group scores by target_id to get only the most recent entry
         const latestScoresMap = new Map();
-        data.forEach(score => {
-          if (!latestScoresMap.has(score.target_id)) {
-            latestScoresMap.set(score.target_id, score);
-          }
-        });
+        if (data) {
+          data.forEach(score => {
+            if (!latestScoresMap.has(score.target_id)) {
+              latestScoresMap.set(score.target_id, score);
+            }
+          });
+        }
         const latestScores = Array.from(latestScoresMap.values());
         
         // Sort the latest scores by greed_score in descending order
@@ -76,7 +78,7 @@ function GreedIndexPage() {
       </div>
 
       {/* DATA TABLE */}
-      <div className="overflow-x-auto overflow-y-auto border border-gray-700 rounded-lg" style={{ maxHeight: '600px' }}>
+      <div className="overflow-x-auto overflow-y-auto border border-gray-700 rounded-lg shadow-2xl" style={{ maxHeight: '600px' }}>
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-green-700 text-white sticky top-0 z-20 shadow-md">
@@ -133,28 +135,36 @@ function GreedIndexPage() {
             </tr>
           </thead>
           <tbody>
-            {scores.map((score, index) => (
-              <tr key={score.id} className={`${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'} hover:bg-gray-700 transition-colors duration-150`}>
-                <td className="p-4 border-b border-gray-700 font-medium">
-                  {/* Company name will be a link to the profile page */}
-                  <a href={`/company/${score.greed_targets.name}`} className="text-white hover:text-green-400 hover:underline">
-                    {score.greed_targets.name}
-                  </a>
-                </td>
-                <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.community_harm}</td>
-                <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.profit_from_necessity}</td>
-                <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.obscurity}</td>
-                <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.exploit_ratio}</td>
-                <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.pay_inequality}</td>
-                <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.responsiveness}</td>
-                <td className="p-4 text-center border-b border-gray-700 font-bold text-xl">
-                  {/* Score will be a link to a detailed report */}
-                  <a href={`/report/${score.id}`} className="text-yellow-400 hover:text-yellow-300 hover:underline">
-                    {score.greed_score}
-                  </a>
+            {scores.length > 0 ? (
+              scores.map((score, index) => (
+                <tr key={score.id} className={`${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'} hover:bg-gray-700 transition-colors duration-150`}>
+                  <td className="p-4 border-b border-gray-700 font-medium">
+                    {/* Company name will be a link to the profile page */}
+                    <a href={`/company/${score.greed_targets.name}`} className="text-white hover:text-green-400 hover:underline">
+                      {score.greed_targets.name}
+                    </a>
+                  </td>
+                  <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.community_harm}</td>
+                  <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.profit_from_necessity}</td>
+                  <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.obscurity}</td>
+                  <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.exploit_ratio}</td>
+                  <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.pay_inequality}</td>
+                  <td className="p-4 text-center border-b border-gray-700 text-gray-300">{score.responsiveness}</td>
+                  <td className="p-4 text-center border-b border-gray-700 font-bold text-xl">
+                    {/* Score will be a link to a detailed report */}
+                    <a href={`/report/${score.id}`} className="text-yellow-400 hover:text-yellow-300 hover:underline">
+                      {score.greed_score}
+                    </a>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="8" className="p-8 text-center text-gray-400">
+                  No data available. Please check your connection.
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
