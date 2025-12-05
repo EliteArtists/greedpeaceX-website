@@ -90,7 +90,7 @@ const HomePage = ({ greedScore }) => {
                             <Link to="/index" className="text-black no-underline">
                                 <div>
                                     <h3 className="text-xl font-bold">GREED INDEX</h3>
-                                    <h4 className="text-2xl font-bold mt-2">MONTH 111: TESCO TAKES TOP SPOT</h4>
+                                    <h4 className="text-2xl font-bold mt-2">TESCO TAKES TOP SPOT</h4>
                                     <p className="text-sm mt-2">See the full data breakdown of this month's worst offenders.</p>
                                 </div>
                             </Link>
