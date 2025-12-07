@@ -60,6 +60,44 @@ const MANUAL_SCORES = [
     }
   },
   {
+    id: 'british-gas-manual',
+    greed_targets: { name: 'British Gas' },
+    greed_score: 16,
+    community_harm: 21,
+    profit_from_necessity: 23,
+    obscurity: 10,
+    exploit_ratio: 6,
+    pay_inequality: 9,
+    responsiveness: 4,
+    rationale: {
+      environmental_harm: "British Gas’s parent Centrica has doubled down on fossil gas infrastructure: in August 2025 it agreed a £1.5bn deal to buy the Isle of Grain LNG terminal, described as a big bet on continued fossil fuel reliance. It also signed a £20bn gas-import contract with Equinor running to 2035, locking in high gas use.",
+      profit_from_necessity: "Operating in the essential home energy market, Centrica has generated large profits and investor rewards during the price crisis. It executed a £1.5bn share buyback while campaigners noted over £7bn in profit since the crisis began. Bad debts rose 82% in 2024 while dividends were hiked, prioritizing shareholders over struggling households.",
+      greenwashing: "Centrica brands itself as central to a lower-carbon energy system but its flagship projects are tied to fossil fuels. The Isle of Grain LNG purchase and £10bn SMR programme are core strategic moves, while it warns of a 'challenging' environment for green energy, creating a gap between climate messaging and its asset trajectory.",
+      worker_exploitation: "While reporting on direct wage theft is limited, a major scandal occurred in 2023 when agents were found breaking into vulnerable customers' homes to fit prepayment meters. Recent reports of chaotic support and errors billing refugees suggest systemic pressure on frontline and contractor roles to follow rigid processes rather than resolve harm.",
+      pay_inequality: "Centrica’s CEO received a package doubling to around £8m following record profits. In May 2025 nearly 40% of shareholders voted against pay plans, noting this occurred while bill-payers faced record debts. Combined with buybacks, this indicates gains are channeled to executives and investors while customers face tight conditions.",
+      resistance_to_accountability: "British Gas often requires regulatory pressure to address problems, such as the 2023 forced prepayment meter ban. Recent cases of vulnerable customers left without heating were only fully resolved after media intervention, while leadership pushed ahead with contentious pay packages despite shareholder revolt."
+    }
+  },
+  {
+    id: 'boohoo-manual',
+    greed_targets: { name: 'BooHoo' },
+    greed_score: 14,
+    community_harm: 21,
+    profit_from_necessity: 9,
+    obscurity: 13,
+    exploit_ratio: 13,
+    pay_inequality: 9,
+    responsiveness: 4,
+    rationale: {
+      environmental_harm: "Boohoo is a major fast-fashion retailer whose model depends on high volumes of low-cost garments. Reporting shows roughly half of clothes sold are made entirely from virgin plastics like polyester. Reductions in per-garment impact are cancelled out by rising production volumes, indicating systemic environmental harm.",
+      profit_from_necessity: "Boohoo sells clothing, an essential category, but focuses on discretionary fast fashion. Recent coverage highlights its struggle to attract shoppers and heavy discounting amid competition. Cost-cutting and job cuts come against falling sales, suggesting only moderate current profit extraction from necessity.",
+      greenwashing: "Boohoo was central to the UK’s first big regulatory crackdown on fashion greenwashing. In March 2024, it agreed to detailed undertakings with the CMA – including clearer labelling and avoiding vague 'green' imagery – after concerns its sustainability claims could mislead consumers.",
+      worker_exploitation: "Investigations have documented serious failings in Boohoo’s Leicester supply chain, with evidence of workers paid well below minimum wage. Campaigners estimated workers could be owed up to £125m. In 2024, investors launched a £100m claim alleging Boohoo delayed disclosing these abuses.",
+      pay_inequality: "Coverage highlights an aggressive executive incentive scheme: the CEO could receive almost £150m in shares for a turnaround. A wider £222m management pay plan was denounced by a major shareholder as a 'corporate disgrace', standing in stark contrast to low-paid supply-chain workers.",
+      resistance_to_accountability: "Boohoo faces a landmark investor lawsuit alleging it misled the market about supply chain exploitation; it has hired heavyweight counsel to contest claims. On environmental marketing, it only tightened practices after a CMA investigation forced formal undertakings."
+    }
+  },
+  {
     id: 'tesco-manual',
     greed_targets: { name: 'Tesco' },
     greed_score: 13,
@@ -76,6 +114,25 @@ const MANUAL_SCORES = [
       worker_exploitation: "Tesco has faced repeated disputes over pay and conditions. In 2024 it lost a significant UK legal case over attempts to 'fire and rehire' staff on lower pay. Ethical ratings flag ongoing concerns about workers' rights, despite relatively strong supply-chain policies.",
       pay_inequality: "Tesco’s CEO Ken Murphy was paid around £9.9m, more than doubling his previous package and equating to roughly 373–431 times the typical Tesco worker’s pay. These rewards coincided with strong profits and ongoing cost-cutting.",
       resistance_to_accountability: "Tesco has a history of scrutiny from regulators. While it publishes extensive sustainability reporting, persistent NGO accusations of greenwashing around deforestation suggest it has at times been slow to fully align its public claims with its underlying sourcing practices."
+    }
+  },
+  {
+    id: 'rolls-royce-manual',
+    greed_targets: { name: 'Rolls-Royce' },
+    greed_score: 12,
+    community_harm: 21,
+    profit_from_necessity: 9,
+    obscurity: 10,
+    exploit_ratio: 8,
+    pay_inequality: 7,
+    responsiveness: 3,
+    rationale: {
+      environmental_harm: "Rolls-Royce’s core businesses – jet engines and nuclear reactors – lock in high-carbon aviation and controversial nuclear technologies. It is central to the UK’s nuclear weapons system and its SMR plans are criticised as costly and risky compared with renewables.",
+      profit_from_necessity: "Rolls-Royce provides critical infrastructure (aviation, defence, nuclear) and has turned these into high earnings, with profits guided above £3bn. It has resumed dividends and buybacks, returning large sums to investors while taxpayers and passengers bear the costs of high-carbon travel and defence.",
+      greenwashing: "Rolls-Royce markets itself as a climate-solution company, highlighting sustainable fuels. Yet analysts argue these fixes cannot fully solve aviation emissions, and Greenpeace rates its financial climate disclosures only 'partial'. Its SMR promotion is contested by economists warning of costs and delays.",
+      worker_exploitation: "A mixed record: UK workers secured multi-year pay deals and share offers. However, 800 US unionised workers voted to authorise a strike in 2025 over tiered wages and healthcare. Industry commentary notes increasing use of outsourcing to push down terms.",
+      pay_inequality: "The CEO's package remains a multi-million-pound sum with high incentive potential. This sits alongside a dramatic share-price rise and buybacks, meaning executives and shareholders capture large gains while average employees receive relatively modest one-off grants.",
+      resistance_to_accountability: "Historically paid a massive settlement over corruption. More recently, Greenpeace found climate disclosure only partially adequate. US subsidiaries donate to politicians, highlighting influence risks. However, it now publishes human-rights policies, suggesting a cautious rather than overtly obstructionist stance."
     }
   }
 ];
