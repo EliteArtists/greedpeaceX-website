@@ -193,6 +193,25 @@ const MANUAL_SCORES = [
     }
   },
   {
+    id: 'p-o-ferries-manual',
+    greed_targets: { name: 'P&O Ferries' },
+    greed_score: 12,
+    community_harm: 9,
+    profit_from_necessity: 18,
+    obscurity: 10,
+    exploit_ratio: 15,
+    pay_inequality: 9,
+    responsiveness: 5,
+    rationale: {
+      environmental_harm: "P&O operates high-emissions ferries but has invested in hybrid vessels and biofuel trials, claiming CO2 reductions. While structurally high-carbon, there is no recent evidence of catastrophic spills or major fines, signalling some operational efficiency progress rather than outright disregard.",
+      profit_from_necessity: "As a critical transport operator, P&O sacked nearly 800 UK seafarers in 2022 to replace them with cheaper agency staff. While P&O itself posts losses, its owner DP World reported record profits shortly after, prompting accusations of 'corporate gangsters' profiting while cutting labour costs to the bone.",
+      greenwashing: "P&O promotes its hybrid ferries as 'leading decarbonisation'. However, its core model relies on fossil-fuel ships and its biggest scandals are labour-related. Without independent regulatory sign-off on its 'leading' narrative, environmental branding appears overstated relative to overall impact.",
+      worker_exploitation: "A textbook case of extreme exploitation: summarily dismissing ~800 seafarers without consultation to hire agency staff on wages as low as £5.15/hr. The CEO admitted breaking the law. Governments had to legislate to close loopholes, confirming previous pay levels were deeply exploitative.",
+      pay_inequality: "Despite losses and scandal, the CEO's pay jumped 55% to ~£683k after the mass sackings, while crews were replaced with low-paid agency workers. Owners enjoyed record profits, highlighting a pattern where executives and owners benefit financially from cost-cutting at the expense of workers.",
+      resistance_to_accountability: "P&O admitted breaking consultation laws but faced no criminal sanctions until laws were tightened. Recently, KPMG resigned as auditor over delays, replaced by a tiny firm, raising transparency questions. P&O declined to answer media questions, suggesting a preference for minimal disclosure and using legal grey areas."
+    }
+  },
+  {
     id: 'boeing-manual',
     greed_targets: { name: 'Boeing' },
     greed_score: 12,
@@ -228,6 +247,25 @@ const MANUAL_SCORES = [
       worker_exploitation: "A mixed record: UK workers secured multi-year pay deals and share offers. However, 800 US unionised workers voted to authorise a strike in 2025 over tiered wages and healthcare. Industry commentary notes increasing use of outsourcing to push down terms.",
       pay_inequality: "The CEO's package remains a multi-million-pound sum with high incentive potential. This sits alongside a dramatic share-price rise and buybacks, meaning executives and shareholders capture large gains while average employees receive relatively modest one-off grants.",
       resistance_to_accountability: "Historically paid a massive settlement over corruption. More recently, Greenpeace found climate disclosure only partially adequate. US subsidiaries donate to politicians, highlighting influence risks. However, it now publishes human-rights policies, suggesting a cautious rather than overtly obstructionist stance."
+    }
+  },
+  {
+    id: 'hyundai-motor-manual',
+    greed_targets: { name: 'Hyundai Motor' },
+    greed_score: 11,
+    community_harm: 20,
+    profit_from_necessity: 9,
+    obscurity: 10,
+    exploit_ratio: 7,
+    pay_inequality: 3,
+    responsiveness: 3,
+    rationale: {
+      environmental_harm: "As a major global carmaker, Hyundai's core business carries a structurally high climate footprint. Real-world testing found the Kona Hybrid using 33% more fuel than official figures. Broader analysis suggests carmakers systematically under-report emissions, implying actual environmental impacts are higher than headline efficiency numbers.",
+      profit_from_necessity: "Cars are important but less fundamental than food/energy. Hyundai's financials show pressure: net profit dropped 22% in mid-2025 due to tariffs. It is committing billions to EV investment and has held prices despite tariffs, suggesting a focus on long-term positioning rather than aggressively extracting excess profit from necessity.",
+      greenwashing: "Hyundai markets hybrids as lower-emission options, but independent tests show significant over-consumption of fuel compared to lab figures. Doubling its hybrid range while trumpeting EVs creates tension between its green narrative and continued reliance on combustion drivetrains with understated real-world impacts.",
+      worker_exploitation: "South Korean workers launched a strike in 2025 before securing a deal, indicating ongoing disputes but an established negotiation framework. In the US, Hyundai was drawn into fallout from an immigration raid at a partner plant; while most detainees were subcontractor employees, it highlights risks in the wider ecosystem.",
+      pay_inequality: "There is little recent detailed reporting on extreme CEO-to-worker pay ratios or controversies compared to Western peers. While significant gaps are likely in a large corporation, the absence of fresh evidence of outsized awards or shareholder rebellions keeps this score at the low end.",
+      resistance_to_accountability: "Hyundai declined to comment when tests showed its hybrid used 33% more fuel than claimed, hinting at defensiveness. Regarding the US immigration raid, leadership emphasized that workers were employed by subcontractors, reflecting a tendency to rely on legal boundaries rather than broad accountability for labour standards."
     }
   },
   {
