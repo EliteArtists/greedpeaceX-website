@@ -22,6 +22,25 @@ const MANUAL_SCORES = [
     }
   },
   {
+    id: 'thames-water-manual',
+    greed_targets: { name: 'Thames Water' },
+    greed_score: 17,
+    community_harm: 27,
+    profit_from_necessity: 23,
+    obscurity: 13,
+    exploit_ratio: 3,
+    pay_inequality: 8,
+    responsiveness: 4,
+    rationale: {
+      environmental_harm: "Thames Water has been fined a record £123m by Ofwat, including £104m specifically for sewage and wastewater failures that caused 'unacceptable' environmental harm. Sewage discharges rose by about 50% in 2024. Communities have filed complaints over failures to upgrade polluting plants, with raw sewage hours at key sites up 240% since 2019.",
+      profit_from_necessity: "Water is an essential monopoly service. Thames Water swung to a £414m half-year profit after raising customer bills by 31%, driving a 40% jump in revenues despite warning of potential collapse under debt. It seeks to recoup £1.18bn from customers for overdue upgrades regulators say were already paid for.",
+      greenwashing: "Thames Water issued £3.1bn in green bonds while environmental performance declined, described by campaigners as 'corporate greenwash on steroids'. It failed to publish standard impact reports on bond proceeds for two years and is pushing for 15 years of leniency on environmental standards while emphasising investment and spill reductions.",
+      worker_exploitation: "Coverage focuses on environmental breaches and financial engineering rather than systematic workforce abuse. There is little evidence of major strikes or safety scandals directly affecting staff. Harms fall primarily on customers and communities through pollution and bills rather than classic labour-rights violations.",
+      pay_inequality: "Senior management attracted criticism for multimillion-pound rewards while the company is distressed. Bosses were in line for £18.5m in retention payments from an emergency loan. The CEO's package can reach millions. £2.46m was paid to managers despite government threats, prompting MPs to call it 'disgusting'.",
+      resistance_to_accountability: "Thames Water has repeatedly sought to avoid consequences: lobbying for leniency on fines and relaxed standards, and arguing that paying the Ofwat penalty could threaten survival. It spent over £7.5m on legal fees contesting enforcement and refused to claw back bonuses until forced by public pressure."
+    }
+  },
+  {
     id: 'nestle-manual',
     greed_targets: { name: 'Nestlé' },
     greed_score: 17,
@@ -98,6 +117,25 @@ const MANUAL_SCORES = [
     }
   },
   {
+    id: 'primark-manual',
+    greed_targets: { name: 'Primark' },
+    greed_score: 13,
+    community_harm: 22,
+    profit_from_necessity: 9,
+    obscurity: 11,
+    exploit_ratio: 11,
+    pay_inequality: 7,
+    responsiveness: 3,
+    rationale: {
+      environmental_harm: "Primark is a major fast-fashion retailer relying on high volumes of low-cost garments. Investigations found discarded clothing from UK brands including Primark illegally dumped in protected wetlands in Ghana. While claiming progress on sustainable fibres, these improvements only partially mitigate the underlying high-impact model.",
+      profit_from_necessity: "Primark sells clothing, including essentials, but is positioned as ultra-cheap fast fashion. It passed the £1bn profit milestone in 2024 with strong margins, indicating strong returns from low-priced clothing, but less evidence of extreme price-gouging on core subsistence goods compared to energy or grocery giants.",
+      greenwashing: "Primark promotes its Sustainability and Ethics Progress Report, claiming 74% of clothes use recycled fibres. However, independent coverage notes supply-chain emissions cuts lag targets. Greenpeace links discarded Primark clothes to illegal dumping, suggesting a significant gap between marketing and real-world footprint.",
+      worker_exploitation: "Ethical Consumer finds inadequate safeguards for workers' rights despite code of conduct. Allegations persist regarding factories in Myanmar, including denied leave and low wages. Primark only moved towards a 'responsible exit' after assessments found forced labour made due diligence impossible.",
+      pay_inequality: "Primark's parent ABF pays its CEO roughly £3.7m, with the Weston family taking £32m in dividends. The business model depends on low-paid garment workers in countries like Bangladesh and budget-conscious retail staff. This combination supports a relatively high pay-inequality score.",
+      resistance_to_accountability: "On internal conduct, the CEO resigned after an external investigation into behaviour, showing some accountability. However, on supply-chain abuses, Primark remained in high-risk Myanmar for years and only exited after significant external pressure. Transparency is improving but remains reactive to scandals."
+    }
+  },
+  {
     id: 'tesco-manual',
     greed_targets: { name: 'Tesco' },
     greed_score: 13,
@@ -133,6 +171,25 @@ const MANUAL_SCORES = [
       worker_exploitation: "A mixed record: UK workers secured multi-year pay deals and share offers. However, 800 US unionised workers voted to authorise a strike in 2025 over tiered wages and healthcare. Industry commentary notes increasing use of outsourcing to push down terms.",
       pay_inequality: "The CEO's package remains a multi-million-pound sum with high incentive potential. This sits alongside a dramatic share-price rise and buybacks, meaning executives and shareholders capture large gains while average employees receive relatively modest one-off grants.",
       resistance_to_accountability: "Historically paid a massive settlement over corruption. More recently, Greenpeace found climate disclosure only partially adequate. US subsidiaries donate to politicians, highlighting influence risks. However, it now publishes human-rights policies, suggesting a cautious rather than overtly obstructionist stance."
+    }
+  },
+  {
+    id: 'asda-manual',
+    greed_targets: { name: 'Asda' },
+    greed_score: 10,
+    community_harm: 8,
+    profit_from_necessity: 17,
+    obscurity: 10,
+    exploit_ratio: 11,
+    pay_inequality: 7,
+    responsiveness: 4,
+    rationale: {
+      environmental_harm: "Limited recent coverage of direct pollution incidents, but supply chain investigations link major retailers like Asda to environmental impacts abroad (e.g., salmon farming). As a large grocer with extensive operations, it has a substantial footprint, though not on the scale of catastrophic spills.",
+      profit_from_necessity: "Asda was singled out for sharply higher fuel profit margins in 2024, becoming the UK's most expensive supermarket for fuel. Private-equity owners have loaded the business with debt, creating pressure to squeeze returns. However, Asda is investing in price cuts and has been named the cheapest major supermarket, indicating mixed impact.",
+      greenwashing: "In March 2024, the CMA concluded an investigation into Asda's environmental claims, requiring changes to marketing of 'green' ranges to avoid misleading shoppers. This is a clear regulator-level finding of greenwashing risk. Asda continues to promote sustainable offers while operating a conventional high-volume model.",
+      worker_exploitation: "Asda is at the centre of a massive equal pay dispute with over 60,000 largely female staff claiming their roles are of equal value to warehouse jobs. A 2025 tribunal ruling supported claimants, paving the way for up to £1.2bn in compensation. Asda continues to contest the claims rather than settling.",
+      pay_inequality: "The equal pay case highlights a stark gap between shop-floor staff and better-paid warehouse workers. Controlled by billionaire owners and private equity, Asda's complex financing structures and debt burden contrast with the large underpayments for tens of thousands of staff, supporting a relatively high inequality score.",
+      resistance_to_accountability: "Asda has fought the equal pay case for over a decade, taking it to the supreme court. On environmental marketing, it only tightened claims after CMA intervention. It denied strategies to bump fuel prices despite evidence of tripling margins. Complex ownership structures reduce transparency about debt."
     }
   }
 ];
