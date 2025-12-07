@@ -79,6 +79,25 @@ const MANUAL_SCORES = [
     }
   },
   {
+    id: 'amazon-manual',
+    greed_targets: { name: 'Amazon' },
+    greed_score: 16,
+    community_harm: 22,
+    profit_from_necessity: 18,
+    obscurity: 13,
+    exploit_ratio: 13,
+    pay_inequality: 8,
+    responsiveness: 4,
+    rationale: {
+      environmental_harm: "Amazon's environmental footprint is dominated by expanding data-centre and logistics operations. It plans to spend ~$100bn in 2025 largely on AI infrastructure, driving massive new power demand. Employees have warned the 'warp-speed' AI rollout is fueling rising emissions, already exceeding many countries.",
+      profit_from_necessity: "While retail is discretionary, Amazon is a de facto channel for basics. Investigations found US schools overpaid by 17% on supplies due to opaque pricing. It agreed a record $2.5bn FTC settlement over 'dark patterns' trapping customers in Prime, even as quarterly net income rose 40% to $21.2bn.",
+      greenwashing: "Amazon markets climate leadership but lobbies against tighter Greenhouse Gas Protocol rules. Its sustainability director questioned funding for groups not aligned with its stance. The Bezos Earth Fund cut ties with a climate standard amid offset scrutiny, suggesting green branding outpaces genuine reductions.",
+      worker_exploitation: "Amazon plans to cut 14,000 corporate jobs despite booming revenue. It faces accusations of union-busting after firing drivers in New York and disciplining staff in Coventry. Workers in Saudi Arabia describe unresolved abuses, and UK warehouses report high injury rates, reinforcing concerns about its intense model.",
+      pay_inequality: "The CEO's pay package was 6,474 times the median worker pay. With quarterly net income over $21bn and massive AI investment, investors and executives enjoy outsized rewards while workers face layoffs and low pay. The internal pay gap remains extreme.",
+      resistance_to_accountability: "Amazon's approach is highly defensive, fighting antitrust cases and declining to admit wrongdoing in the Prime settlement. It lobbies against carbon-accounting standards and has appealed NLRB rulings on labour disputes, resisting transparent accountability."
+    }
+  },
+  {
     id: 'british-gas-manual',
     greed_targets: { name: 'British Gas' },
     greed_score: 16,
@@ -117,6 +136,25 @@ const MANUAL_SCORES = [
     }
   },
   {
+    id: 'coca-cola-manual',
+    greed_targets: { name: 'Coca-Cola' },
+    greed_score: 14,
+    community_harm: 24,
+    profit_from_necessity: 12,
+    obscurity: 13,
+    exploit_ratio: 7,
+    pay_inequality: 6,
+    responsiveness: 4,
+    rationale: {
+      environmental_harm: "Analysis estimates Coca-Cola products could be responsible for ~602m kg of plastic entering waterways annually by 2030. A 2024 study found just 60 firms account for half of global plastic pollution, with Coca-Cola among the worst. It warned tariffs might push it back to more plastic bottles, clashing with sustainability goals.",
+      profit_from_necessity: "Coca-Cola generates strong profits by raising prices faster than volumes. Q3 2025 results show operating income up 59%. While soft drinks are discretionary, bottled water and beverages are embedded in daily life, and the system extracts healthy returns from consumers worldwide.",
+      greenwashing: "Accused of a 'masterclass in greenwashing' for quietly removing its pledge to make 25% of packaging reusable by 2030 just before a major summit. Its sponsorship of COP27 was condemned given its status as a top polluter. High-profile branding contrasts with findings that its packaging strategy undermines waste reduction.",
+      worker_exploitation: "Direct coverage is limited but present: 150 workers at a Northmead factory voted to strike over low pay compared to rivals. While evidence of systemic global wage theft is less prominent in these sources, clear disputes and pressure on frontline staff exist without reaching the level of entrenched exploitation seen elsewhere.",
+      pay_inequality: "Coca-Cola and partners generate solid earnings and dividends while frontline workers strike over low pay. Shareholders approved significant executive remuneration even in low-wage markets, implying a classic pattern of generous top-level rewards and tight wage pressure lower down.",
+      resistance_to_accountability: "Engaged in a high-stakes tax dispute with the IRS, potentially owing $16bn; it is vigorously appealing. On environment, it stepped back from reusable packaging pledges. Activist boycotts target operations in occupied territories. It engages primarily through legal challenge and lobbying rather than full alignment with justice demands."
+    }
+  },
+  {
     id: 'primark-manual',
     greed_targets: { name: 'Primark' },
     greed_score: 13,
@@ -152,6 +190,25 @@ const MANUAL_SCORES = [
       worker_exploitation: "Tesco has faced repeated disputes over pay and conditions. In 2024 it lost a significant UK legal case over attempts to 'fire and rehire' staff on lower pay. Ethical ratings flag ongoing concerns about workers' rights, despite relatively strong supply-chain policies.",
       pay_inequality: "Tesco’s CEO Ken Murphy was paid around £9.9m, more than doubling his previous package and equating to roughly 373–431 times the typical Tesco worker’s pay. These rewards coincided with strong profits and ongoing cost-cutting.",
       resistance_to_accountability: "Tesco has a history of scrutiny from regulators. While it publishes extensive sustainability reporting, persistent NGO accusations of greenwashing around deforestation suggest it has at times been slow to fully align its public claims with its underlying sourcing practices."
+    }
+  },
+  {
+    id: 'boeing-manual',
+    greed_targets: { name: 'Boeing' },
+    greed_score: 12,
+    community_harm: 19,
+    profit_from_necessity: 7,
+    obscurity: 9,
+    exploit_ratio: 12,
+    pay_inequality: 8,
+    responsiveness: 5,
+    rationale: {
+      environmental_harm: "Boeing is half of the global large-jet duopoly. Planes sold in just two years will emit >1bn tonnes of CO2 over their lifetimes. Boeing is betting on 'sustainable aviation fuel' rather than radical tech, while targeting higher production rates, locking in high-carbon aviation for decades.",
+      profit_from_necessity: "Boeing sells to airlines and governments, one step removed from consumer essentials. It reported massive losses ($11.8bn in 2024) and negative margins due to charges, indicating an emphasis on balance-sheet repair rather than extracting windfall profits from the public during a cost-of-living crisis.",
+      greenwashing: "Boeing has 'bet the farm' on sustainable aviation fuel (SAF), despite warnings that SAF narratives overstate what is achievable. Its climate messaging gives a greener impression than warranted by the scale of lifetime fleet emissions, looking optimistic relative to actual product impacts.",
+      worker_exploitation: "A deeply troubled safety culture: whistleblowers allege harassment and intimidation. An engineer testified there is 'no safety culture'. 30,000 workers mounted a lengthy strike in 2024 after Boeing withdrew pay offers, signaling intense conflict over conditions and union-busting allegations.",
+      pay_inequality: "The outgoing CEO received $32.8m for 2023 (up 45%) and nearly $100m since 2020, despite safety crises. A former CEO walked away with $60m after 737 Max crashes. This pattern of massive rewards in bad times sits uneasily beside strikes and safety failures.",
+      resistance_to_accountability: "Boeing agreed a $1.1bn deal to avoid prosecution over 737 Max misleading statements, described as 'morally repugnant'. Regulators rebuke its record-keeping (missing door-plug records), and workers claim managers silence safety concerns. It consistently resists full, transparent accountability."
     }
   },
   {
