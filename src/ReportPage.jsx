@@ -318,7 +318,7 @@ function ReportPage({ reportComponent }) {
             header = {
                 title: "THE INVISIBLE HAND",
                 subtitle: "A Forensic Dossier on Cross-Sector Corporate Power in Food, Energy, and Housing",
-                byline: "By Malik Rowan, GPX Finance & Legal Systems | Published: Coming Soon"
+                byline: "By Malik Rowan, GPX Finance & Legal Systems | Published: December 2025"
             };
             petitionSlug = 'invisiblehand';
             // Use the imported component
