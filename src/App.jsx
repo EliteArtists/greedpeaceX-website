@@ -74,7 +74,7 @@ const HomePage = ({ greedScore }) => {
                     </h2>
                     <div className="grid md:grid-cols-3 gap-4 mt-4">
                         
-                        {/* 1. UPCOMING / INVISIBLE HAND */}
+                        {/* 1. LATEST INVESTIGATION / INVISIBLE HAND */}
                         <div className="bg-red-600 text-white p-4 flex flex-col justify-between text-center">
                             <Link to="/report/invisible-hand" className="text-white no-underline">
                                 <div>
