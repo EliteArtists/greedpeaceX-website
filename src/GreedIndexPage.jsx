@@ -327,7 +327,7 @@ function GreedIndexPage() {
       <div className="max-w-4xl mx-auto text-center mb-10">
         <h1 className="text-5xl font-bold mb-4">GREED INDEX</h1>
         <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-          The Greed Index is GPX’s monthly scorecard exposing how corporations generate profit at the expense of people and the planet. Using six weighted categories, we reveal who causes the most harm — and who hides it best.
+          The Greed Index uses GPX’s six-factor algorithm to reveal how major companies profit through harm, greenwashing, and exploitation—updated monthly using public evidence. Hover or tap any score to see how the value was calculated.
         </p>
       </div>
 
