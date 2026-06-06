@@ -13,8 +13,8 @@ import YouTubeEmbed from './YouTubeEmbed'; // <-- NEW IMPORT: Embed component
 
 // Initialize the Supabase client with the public anonymous key
 const supabase = createClient(
-  'https://hokibuzggipohnopetld.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJipssiOiJzdXBhYmFzZSIsInJlZiI6Imhva2lidXpnZ2lwb2hub3BldGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ3NTg2NjUsImV4cCI6MjA3MDMzNDY2NX0.Hs7XWmLMs9wYktt1UFp1DtTp-3VK_fRCni2g-3TyA9g'
+  'https://obhdplxwqjeoxdvyfihl.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9iaGRwbHh3cWplb3hkdnlmaWhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MzA1NTMsImV4cCI6MjA5NjMwNjU1M30.K-T1_sf_LPBaikjRPb-Che4Wv-VYwnBH1Ig011a_Kb4'
 );
 
 // Define a reusable Layout component to hold the menu and footer
