@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 // Get your Supabase project URL from your App.jsx or Supabase dashboard
 const SUPABASE_URL = 'https://obhdplxwqjeoxdvyfihl.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9iaGRwbHh3cWplb3hkdnlmaWhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MzA1NTMsImV4cCI6MjA5NjMwNjU1M30.K-T1_sf_LPBaikjRPb-Che4Wv-VYwnBH1Ig011a_Kb4'
 
 function Modal({ isOpen, onClose, type, isPetition }) {
   const [email, setEmail] = useState('');
