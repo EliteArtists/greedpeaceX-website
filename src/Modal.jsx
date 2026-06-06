@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // Get your Supabase project URL from your App.jsx or Supabase dashboard
-const SUPABASE_URL = 'https://hokibuzggipohnopetld.supabase.co';
+const SUPABASE_URL = 'https://obhdplxwqjeoxdvyfihl.supabase.co';
 
 function Modal({ isOpen, onClose, type, isPetition }) {
   const [email, setEmail] = useState('');
